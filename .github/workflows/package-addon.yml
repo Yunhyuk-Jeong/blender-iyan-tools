@@ -26,6 +26,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Validate suite sources
+        run: |
+          python -c "import ast, pathlib; files=['iyan_kim_tools/__init__.py','iyan_kim_tools/config.py','iyan_kim_tools/mochi_bone_cleaner.py','iyan_kim_tools/mesh_cleanup.py','iyan_kim_tools/uv_validation.py','scripts/package_addon.py']; [ast.parse(pathlib.Path(f).read_text(encoding='utf-8')) for f in files]"
+
       - name: Build installable ZIP
         id: build
         run: |
@@ -36,7 +40,7 @@ jobs:
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: blender-addon-zip
+          name: ${{ steps.build.outputs.zip_name }}
           path: ${{ steps.build.outputs.zip_path }}
           if-no-files-found: error
 
@@ -44,4 +48,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
+          name: Iyan-Kim Tools ${{ github.ref_name }}
           files: ${{ steps.build.outputs.zip_path }}

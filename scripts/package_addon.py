@@ -7,7 +7,7 @@ import zipfile
 
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[1]
-DEFAULT_ADDON_DIR = REPO_ROOT / "iyan_mochi_bone_cleaner"
+DEFAULT_ADDON_DIR = REPO_ROOT / "iyan_kim_tools"
 DEFAULT_DIST_DIR = REPO_ROOT / "dist"
 
 
