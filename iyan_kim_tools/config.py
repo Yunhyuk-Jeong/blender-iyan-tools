@@ -1,0 +1,2 @@
+SIDEBAR_CATEGORY = "Iyan-Kim"
+ROOT_PANEL_ID = "IYAN_PT_suite"
