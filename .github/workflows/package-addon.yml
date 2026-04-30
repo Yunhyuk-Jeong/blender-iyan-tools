@@ -48,5 +48,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          name: Iyan-Kim Tools ${{ github.ref_name }}
+          name: Studio Iyan Tools ${{ github.ref_name }}
           files: ${{ steps.build.outputs.zip_path }}

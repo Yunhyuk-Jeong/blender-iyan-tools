@@ -1,2 +1,2 @@
-SIDEBAR_CATEGORY = "Iyan-Kim"
+SIDEBAR_CATEGORY = "Studio Iyan"
 ROOT_PANEL_ID = "IYAN_PT_suite"

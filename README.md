@@ -1,6 +1,6 @@
-# Iyan-Kim Tools
+# Studio Iyan Tools
 
-`Iyan-Kim Tools` is a unified Blender addon suite that bundles multiple production helpers under a single sidebar tab.
+`Studio Iyan Tools` is a unified Blender addon suite that bundles multiple production helpers under a single sidebar tab.
 
 The current suite contains:
 
@@ -10,9 +10,9 @@ The current suite contains:
 
 The suite installs as one addon and appears in one sidebar category:
 
-- `View3D > Sidebar > Iyan-Kim`
+- `View3D > Sidebar > Studio Iyan`
 
-Current unified addon version: `2.0.1`
+Current unified addon version: `2.0.2`
 
 ## Why This Structure
 
@@ -21,14 +21,14 @@ This repository previously grew as separate addons with separate sidebar categor
 - one install target
 - one sidebar tab
 - one top-level parent panel
-- one place to add future Iyan-Kim tools
+- one place to add future Studio Iyan tools
 
 ## UI Architecture
 
 The unified addon uses:
 
-- Sidebar category: `Iyan-Kim`
-- Root panel: `Iyan-Kim Tools`
+- Sidebar category: `Studio Iyan`
+- Root panel: `Studio Iyan Tools`
 - Child panels:
   - `Mochi Bone Cleaner`
   - `Mesh Cleanup`
@@ -114,7 +114,7 @@ Core behavior:
 2. In Blender 4.2 or newer, open the extension preferences.
 3. Click `Install from Disk...`.
 4. Select the ZIP file.
-5. Enable `Iyan-Kim Tools`.
+5. Enable `Studio Iyan Tools`.
 
 ### Local Build
 
@@ -139,7 +139,7 @@ python scripts/package_addon.py --builder blender --blender-executable "E:\Steam
 Expected output:
 
 ```text
-dist/iyan_kim_tools-2.0.1.zip
+dist/iyan_kim_tools-2.0.2.zip
 ```
 
 The ZIP keeps `blender_manifest.toml` and `__init__.py` at the archive root, which Blender expects for extension packages.
@@ -167,7 +167,7 @@ This repository includes `.github/workflows/package-addon.yml`.
    - Mochi tool
    - Mesh Cleanup tool
    - UV Validation tool
-3. All tool panels render under the same `Iyan-Kim` sidebar category
+3. All tool panels render under the same `Studio Iyan` sidebar category
 
 ### Mochi Bone Cleaner
 
@@ -208,7 +208,7 @@ This repository includes `.github/workflows/package-addon.yml`.
 
 - Introduced the unified addon package: `iyan_kim_tools`
 - Removed the old standalone addon directories from the active codebase
-- Moved the UI to a single `Iyan-Kim` sidebar category
+- Moved the UI to a single `Studio Iyan` sidebar category
 - Reframed each tool as a subpanel under one parent panel
 - Kept the improved Mochi Bone Cleaner analysis logic from `1.1.0`
 - Added the Blender 4.2+ extension manifest
@@ -248,5 +248,5 @@ python scripts/package_addon.py
 Blender extension validation, when Blender is available on `PATH`:
 
 ```bash
-blender --command extension validate dist/iyan_kim_tools-2.0.1.zip
+blender --command extension validate dist/iyan_kim_tools-2.0.2.zip
 ```

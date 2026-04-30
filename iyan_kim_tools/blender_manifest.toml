@@ -1,10 +1,10 @@
 schema_version = "1.0.0"
 
 id = "iyan_kim_tools"
-version = "2.0.1"
-name = "Iyan-Kim Tools"
+version = "2.0.2"
+name = "Studio Iyan Tools"
 tagline = "Tools for bone cleanup mesh cleanup and UV validation"
-maintainer = "Iyan-Kim"
+maintainer = "Studio Iyan"
 type = "add-on"
 
 blender_version_min = "4.2.0"

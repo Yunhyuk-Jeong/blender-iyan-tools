@@ -13,7 +13,7 @@ if _needs_reload:
 
 
 class IYAN_PT_suite(bpy.types.Panel):
-    bl_label = "Iyan-Kim Tools"
+    bl_label = "Studio Iyan Tools"
     bl_idname = ROOT_PANEL_ID
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
