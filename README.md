@@ -12,7 +12,7 @@ The suite installs as one addon and appears in one sidebar category:
 
 - `View3D > Sidebar > Iyan-Kim`
 
-Current unified addon version: `2.0.0`
+Current unified addon version: `2.0.1`
 
 ## Why This Structure
 
@@ -40,6 +40,7 @@ This gives you the “one tab with subtools” structure Blender supports well.
 
 ```text
 iyan_kim_tools/
+  blender_manifest.toml    Blender 4.2+ extension manifest
   __init__.py              Unified addon entry point
   config.py                Shared UI constants
   mochi_bone_cleaner.py    Bone analysis and cleanup tool
@@ -110,8 +111,8 @@ Core behavior:
 ### Install from ZIP
 
 1. Build or download the packaged ZIP.
-2. In Blender, open `Edit > Preferences > Add-ons`.
-3. Click `Install...`.
+2. In Blender 4.2 or newer, open the extension preferences.
+3. Click `Install from Disk...`.
 4. Select the ZIP file.
 5. Enable `Iyan-Kim Tools`.
 
@@ -123,13 +124,25 @@ Build the installable Blender ZIP locally:
 python scripts/package_addon.py
 ```
 
+When Blender is available on `PATH`, the script uses Blender's official extension builder. To force the fallback builder:
+
+```bash
+python scripts/package_addon.py --builder python
+```
+
+To use a Blender executable that is not on `PATH`:
+
+```bash
+python scripts/package_addon.py --builder blender --blender-executable "E:\SteamLibrary\steamapps\common\Blender\blender.exe"
+```
+
 Expected output:
 
 ```text
-dist/iyan_kim_tools-v2.0.0.zip
+dist/iyan_kim_tools-2.0.1.zip
 ```
 
-The ZIP keeps the `iyan_kim_tools/` folder at the archive root, which Blender expects.
+The ZIP keeps `blender_manifest.toml` and `__init__.py` at the archive root, which Blender expects for extension packages.
 
 ## GitHub Actions Packaging
 
@@ -198,8 +211,9 @@ This repository includes `.github/workflows/package-addon.yml`.
 - Moved the UI to a single `Iyan-Kim` sidebar category
 - Reframed each tool as a subpanel under one parent panel
 - Kept the improved Mochi Bone Cleaner analysis logic from `1.1.0`
-- Switched packaging to build the unified addon ZIP
-- Added CI validation for the suite source files before packaging
+- Added the Blender 4.2+ extension manifest
+- Switched packaging to build a manifest-based extension ZIP
+- Added CI validation for the suite source files and manifest before packaging
 
 ## Analysis Notes
 
@@ -222,11 +236,17 @@ The new unified package gives you a stable base for future tools without multipl
 Syntax-level verification without writing bytecode:
 
 ```bash
-python -c "import ast, pathlib; [ast.parse(pathlib.Path(p).read_text(encoding='utf-8')) for p in ['iyan_kim_tools/__init__.py', 'iyan_kim_tools/mochi_bone_cleaner.py', 'iyan_kim_tools/mesh_cleanup.py', 'iyan_kim_tools/uv_validation.py', 'scripts/package_addon.py']]"
+python -c "import ast, pathlib, tomllib; files=['iyan_kim_tools/__init__.py','iyan_kim_tools/config.py','iyan_kim_tools/mochi_bone_cleaner.py','iyan_kim_tools/mesh_cleanup.py','iyan_kim_tools/uv_validation.py','scripts/package_addon.py']; [ast.parse(pathlib.Path(f).read_text(encoding='utf-8')) for f in files]; tomllib.loads(pathlib.Path('iyan_kim_tools/blender_manifest.toml').read_text(encoding='utf-8'))"
 ```
 
 Package build:
 
 ```bash
 python scripts/package_addon.py
+```
+
+Blender extension validation, when Blender is available on `PATH`:
+
+```bash
+blender --command extension validate dist/iyan_kim_tools-2.0.1.zip
 ```

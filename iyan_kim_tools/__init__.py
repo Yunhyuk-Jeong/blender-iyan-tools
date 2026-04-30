@@ -1,17 +1,15 @@
-bl_info = {
-    "name": "Iyan-Kim Tools",
-    "author": "Iyan-Kim",
-    "version": (2, 0, 0),
-    "blender": (3, 0, 0),
-    "location": "View3D > Sidebar > Iyan-Kim",
-    "description": "Unified tool suite for Mochi bone cleanup, mesh cleanup, and UV validation",
-    "category": "3D View",
-}
+_needs_reload = "bpy" in locals()
 
 import bpy
+import importlib
 
 from .config import ROOT_PANEL_ID, SIDEBAR_CATEGORY
 from . import mesh_cleanup, mochi_bone_cleaner, uv_validation
+
+if _needs_reload:
+    mesh_cleanup = importlib.reload(mesh_cleanup)
+    mochi_bone_cleaner = importlib.reload(mochi_bone_cleaner)
+    uv_validation = importlib.reload(uv_validation)
 
 
 class IYAN_PT_suite(bpy.types.Panel):

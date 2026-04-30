@@ -1,0 +1,21 @@
+schema_version = "1.0.0"
+
+id = "iyan_kim_tools"
+version = "2.0.1"
+name = "Iyan-Kim Tools"
+tagline = "Tools for bone cleanup mesh cleanup and UV validation"
+maintainer = "Iyan-Kim"
+type = "add-on"
+
+blender_version_min = "4.2.0"
+
+license = [
+  "SPDX:GPL-3.0-or-later",
+]
+
+[build]
+paths_exclude_pattern = [
+  "__pycache__/",
+  ".*",
+  "*.zip",
+]
